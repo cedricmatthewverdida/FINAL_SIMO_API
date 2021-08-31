@@ -15,13 +15,20 @@ return [
     |
     */
 
-    'paths' => [],
-    'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', '*'],
+    'paths' => ['api/*', 'sanctum/*', 'login', 'logout'],
+
+    'allowed_methods' => ['*'],
+
     'allowed_origins' => ['*'],
-    'allowed_origins_patterns' => ['http://localhost:8080', 'https://simopolicy.vercel.app'],
-    'allowed_headers' => ['X-Custom-Header', 'Upgrade-Insecure-Requests', '*'],
-    'exposed_headers' => false,
-    'max_age' => false,
-    'supports_credentials' => false,
+
+    'allowed_origins_patterns' => [],
+
+    'allowed_headers' => ['*'],
+
+    'exposed_headers' => [],
+
+    'max_age' => 0,
+
+    'supports_credentials' => true,
 
 ];
