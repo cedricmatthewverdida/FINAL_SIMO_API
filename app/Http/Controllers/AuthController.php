@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Helpers\APIHelper;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthController extends Controller
 {
@@ -51,19 +52,9 @@ class AuthController extends Controller
 
     public function login (Request $request){
 
-        if(!Auth::attempt($request->only('email','password'))){
-            return response([
-                'mesage' => 'Invalid Credentials!'
-            ], Response::HTTP_UNAUTHORIZED);
+        if(!auth()->attempt($request->only('email','password'))){
+            throw new AuthenticationException();
         }
-
-        $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken;
-        $cookie = cookie('token' , $token , 60 * 24);
-
-        return response ([
-            'token' => $token,
-        ])->withCookie($cookie);
 
     }
 

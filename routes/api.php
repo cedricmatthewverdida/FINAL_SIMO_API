@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,15 +21,19 @@ Route::post('register',[
     'register'
 ]);
 
-// Route::post('login',[
-//     \App\Http\Controllers\AuthController::class,
-//     'login'
-// ]);
+Route::post('login',[
+    \App\Http\Controllers\AuthController::class,
+    'login'
+]);
 
 Route::get('alluser',[
     \App\Http\Controllers\AuthController::class,
     'alluser'
 ]);
+
+
+// Route::get('login',App\Http\Controllers\Auth\LoginController::class,'login');
+
 
 
 // Route::middleware('auth:sanctum')->group(function (){
@@ -47,11 +51,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('admin')->group(function(){
-    Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
-    Route::post('/logout', [LoginController::class, 'logout']);
+// Route::prefix('admin')->group(function(){
+//     Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
+//     Route::post('/logout', [LoginController::class, 'logout']);
 
-});
+// });
 
 
 
