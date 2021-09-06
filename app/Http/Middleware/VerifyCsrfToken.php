@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'https://fast-everglades-24609.vercel.app'
+        //
     ];
 }
